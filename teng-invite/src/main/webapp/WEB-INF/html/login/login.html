@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+
+<head>
+
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="Expires" content="0"/> 
+	<meta http-equiv="Pragma" content="no-cache"/>
+    <link href="css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="font-awesome/css/font-awesome.css" rel="stylesheet"/>
+
+    <title>LeafCat Manager | Login</title>
+
+
+    <link href="css/animate.css" rel="stylesheet"/>
+    <link href="css/style.css" rel="stylesheet"/>
+
+</head>
+
+<body class="gray-bg">
+
+    <div class="middle-box text-center loginscreen animated fadeInDown">
+    
+        <div>
+            <div class="loginColumns">
+                <h2>LeafCat Manager++</h2>
+            </div>
+            <div>
+                 <div th:if="${loginErr} == 'NE'"  class="alert alert-danger alert-dismissable text-center" id="emailErr">
+			         <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+			        This email is not registered.
+			     </div>
+                <div th:if="${loginErr} == 'PE'" class="alert alert-danger alert-dismissable text-center" id="pwdErr">
+			         <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+			        Invalid password.
+			     </div>
+            </div>
+            <form class="m-t" role="form" th:action="@{/login.go}" th:object="${loginVO}"  action="#" id="loginForm" method="post">
+                <div class="form-group">
+                    <input type="email" th:field="*{emailAddr}" name="email" id="email" class="form-control" placeholder="Email" required="required"/>
+                </div>
+                <div class="form-group">
+                    <input type="password" th:field="*{password}" name="password" id="password" class="form-control" placeholder="Password" required="required"/>
+                </div>
+                <button type="submit" id="loginBtn" class="btn btn-primary block full-width m-b">Login</button>
+            </form>
+                <a href="#"><small>Forgot password?</small></a>
+                <p class="text-muted text-center"><small>Do not have an account?</small></p>
+                <a class="btn btn-sm btn-white btn-block" href="/moveRegister.go">Create an account</a>
+            <p class="m-t"> <small> LeafCat based on Inspinia with Bootstrap 3 &copy; 2014</small> </p>
+        </div>
+             <button id="test4" type="button" class="btn btn-w-m btn-warning">test</button>
+    </div>
+
+    <!-- Mainly scripts -->
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    
+    <!-- Custom scripts -->
+    <script type="text/javascript">
+    
+	    $("#loginBtn").click(function(){
+	    	$('#loginBtn').prop("disabled",true);
+	    	$("#loginForm").validate();
+	    	$("#loginForm").submit();
+	    });
+	    
+		$("#test4").click(function(){
+  	        $.ajax({
+  	            url:'/test.do',
+  	            type:'post'
+  	        })
+		});
+	    
+	    $(document).ready(function () {
+		});
+    
+    </script>
+
+</body>
+
+</html>

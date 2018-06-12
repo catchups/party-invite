@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+  layout:decorator="mainLayout">
+
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="Cache-Control" content="no-chache"/>
+    <meta http-equiv="Expires" content="0"/>
+    <meta http-equiv="Pragma" content="no-cache"/>
+
+    <title>K-Coin Board</title>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="font-awesome/css/font-awesome.css" rel="stylesheet"/>
+
+    <link href="css/animate.css" rel="stylesheet"/>
+    <link href="css/style.css" rel="stylesheet"/>
+    
+    <!-- FooTable -->
+    <link href="css/plugins/footable/footable.core.css" rel="stylesheet">
+    
+    <!-- Data table -->
+    <link href="css/plugins/dataTables/datatables.min.css" rel="stylesheet">
+    
+    <!-- Toastr -->
+    <link href="css/plugins/toastr/toastr.min.css" rel="stylesheet">
+	
+	
+</head>
+
+<body>
+
+<div layout:fragment="content">
+<div class="row m-t">
+<div class="col-lg-12">
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- coinboard상단 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-8280106920520184"
+     data-ad-slot="6825828694"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+</div>
+		<div class="row m-t">
+                  <div class="col-lg-12">
+                      <div class="ibox float-e-margins">
+                          <div class="ibox-title">
+                        	  <span class="label label-danger m-r">Now</span>
+                              <h5>가상화폐 정보</h5>
+                              <div class="ibox-tools">
+                                  <a class="collapse-link">
+                                      <i class="fa fa-chevron-up"></i>
+                                  </a>
+                                  <a class="close-link">
+                                      <i class="fa fa-times"></i>
+                                  </a>
+                              </div>
+                          </div>
+                          <div class="ibox-content">
+                              <div class="table-responsive">
+                                  <table class="table table-striped table-bordered" id="coinTable" >
+                                      <thead>
+                                      <tr>
+                                          <th style="text-align: center;">Coin</th>
+                                          <th style="text-align: center;">Symbol</th>
+                                          <th class="text-info" style="text-align: center;">USD</th>
+                                          <th class="text-warning" style="text-align: center;">Bithumb(KRW)</th>
+                                          <th class="text-warning" style="text-align: center;">빗썸 premium</th>
+                                          <th class="text-success" style="text-align: center;">Upbit(KRW)</th>
+                                          <th class="text-success" style="text-align: center;">업빗 premium</th>
+                                          <th class="text-danger" style="text-align: center;">빗썸 - 업빗</th>
+                                      </tr>
+                                      </thead>
+                                      <tbody>
+                                      <tr>
+                                          <td><img src="img/btc.png" width="20" height="20" class="m-r-xs">비트코인</td>
+                                          <td>BTC</td>
+                                          <td id="btfBTCUSD" align="right"></td>
+                                          <td id="btbBTCKRW" align="right"></td>
+                                          <td id="btbBTCKp" align="right"></td>
+                                          <td id="ubtBTCKRW" align="right"></td>
+                                          <td id="ubtBTCKp" align="right"></td>
+                                          <td id="difBTC" align="right"></td>
+                                      </tr>
+                                      <tr>
+                                          <td><img src="img/xrp.png" width="20" height="20" class="m-r-xs">리플</td>
+                                          <td>XRP</td>
+                                          <td id="btfXRPUSD" align="right"></td>
+                                          <td id="btbXRPKRW" align="right"></td>
+                                          <td id="btbXRPKp" align="right"></td>
+                                          <td id="ubtXRPKRW" align="right"></td>
+                                          <td id="ubtXRPKp" align="right"></td>
+                                          <td id="difXRP" align="right"></td>
+                                      </tr>
+                                      <tr>
+                                          <td><img src="img/eth.png" width="20" height="20" class="m-r-xs">이더리움</td>
+                                          <td>ETH</td>
+                                          <td id="btfETHUSD" align="right"></td>
+                                          <td id="btbETHKRW" align="right"></td>
+                                          <td id="btbETHKp" align="right"></td>
+                                          <td id="ubtETHKRW" align="right"></td>
+                                          <td id="ubtETHKp" align="right"></td>
+                                          <td id="difETH" align="right"></td>
+                                      </tr>
+                                      <tr>
+                                          <td><img src="img/bch.png" width="20" height="20" class="m-r-xs">비트코인 캐시</td>
+                                          <td>BCH</td>
+                                          <td id="btfBCHUSD" align="right"></td>
+                                          <td id="btbBCHKRW" align="right"></td>
+                                          <td id="btbBCHKp" align="right"></td>
+                                          <td id="ubtBCHKRW" align="right"></td>
+                                          <td id="ubtBCHKp" align="right"></td>
+                                          <td id="difBCH" align="right"></td>
+                                      </tr>
+                                      <tr>
+                                          <td><img src="img/ltc.png" width="20" height="20" class="m-r-xs">라이트코인</td>
+                                          <td>LTC</td>
+                                          <td id="btfLTCUSD" align="right"></td>
+                                          <td id="btbLTCKRW" align="right"></td>
+                                          <td id="btbLTCKp" align="right"></td>
+                                          <td id="ubtLTCKRW" align="right"></td>
+                                          <td id="ubtLTCKp" align="right"></td>
+                                          <td id="difLTC" align="right"></td>
+                                      </tr>
+                                      <tr>
+                                          <td><img src="img/dash.png" width="20" height="20" class="m-r-xs">대시</td>
+                                          <td>DASH</td>
+                                          <td id="btfDASHUSD" align="right"></td>
+                                          <td id="btbDASHKRW" align="right"></td>
+                                          <td id="btbDASHKp" align="right"></td>
+                                          <td id="ubtDASHKRW" align="right"></td>
+                                          <td id="ubtDASHKp" align="right"></td>
+                                          <td id="difDASH" align="right"></td>
+                                      </tr>
+                                      <tr>
+                                          <td><img src="img/xmr.png" width="20" height="20" class="m-r-xs">모네로</td>
+                                          <td>XMR</td>
+                                          <td id="btfXMRUSD" align="right"></td>
+                                          <td id="btbXMRKRW" align="right"></td>
+                                          <td id="btbXMRKp" align="right"></td>
+                                          <td id="ubtXMRKRW" align="right"></td>
+                                          <td id="ubtXMRKp" align="right"></td>
+                                          <td id="difXMR" align="right"></td>
+                                      </tr>
+                                      <tr>
+                                          <td><img src="img/eos.png" width="20" height="20" class="m-r-xs">이오스</td>
+                                          <td>EOS</td>
+                                          <td id="btfEOSUSD" align="right"></td>
+                                          <td id="btbEOSKRW" align="right"></td>
+                                          <td id="btbEOSKp" align="right"></td>
+                                          <td id="ubtEOSKRW" align="right"></td>
+                                          <td id="ubtEOSKp" align="right"></td>
+                                          <td id="difEOS" align="right"></td>
+                                      </tr>
+                                      <tr>
+                                          <td><img src="img/qtum.png" width="20" height="20" class="m-r-xs">퀀텀</td>
+                                          <td>QTUM</td>
+                                          <td id="btfQTUMUSD" align="right"></td>
+                                          <td id="btbQTUMKRW" align="right"></td>
+                                          <td id="btbQTUMKp" align="right"></td>
+                                          <td id="ubtQTUMKRW" align="right"></td>
+                                          <td id="ubtQTUMKp" align="right"></td>
+                                          <td id="difQTUM" align="right"></td>
+                                      </tr>
+                                      <tr>
+                                          <td><img src="img/btg.png" width="20" height="20" class="m-r-xs">비트코인 골드</td>
+                                          <td>BTG</td>
+                                          <td id="btfBTGUSD" align="right"></td>
+                                          <td id="btbBTGKRW" align="right"></td>
+                                          <td id="btbBTGKp" align="right"></td>
+                                          <td id="ubtBTGKRW" align="right"></td>
+                                          <td id="ubtBTGKp" align="right"></td>
+                                          <td id="difBTG" align="right"></td>
+                                      </tr>
+                                      <tr>
+                                          <td><img src="img/zec.png" width="20" height="20" class="m-r-xs">제트캐시</td>
+                                          <td>ZEC</td>
+                                          <td id="btfZECUSD" align="right"></td>
+                                          <td id="btbZECKRW" align="right"></td>
+                                          <td id="btbZECKp" align="right"></td>
+                                          <td id="ubtZECKRW" align="right"></td>
+                                          <td id="ubtZECKp" align="right"></td>
+                                          <td id="difZEC" align="right"></td>
+                                      </tr>
+                                      <tr>
+                                          <td><img src="img/etc.png" width="20" height="20" class="m-r-xs">이더리움 클래식</td>
+                                          <td>ETC</td>
+                                          <td id="btfETCUSD" align="right"></td>
+                                          <td id="btbETCKRW" align="right"></td>
+                                          <td id="btbETCKp" align="right"></td>
+                                          <td id="ubtETCKRW" align="right"></td>
+                                          <td id="ubtETCKp" align="right"></td>
+                                          <td id="difETC" align="right"></td>
+                                      </tr>
+                                      </tbody>
+                                  </table>
+                              </div>
+
+                          </div>
+                      </div>
+                  </div>
+              </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <span class="label label-success pull-right">Today</span>
+                        <h5><img src="img/btc.png" width="20" height="20" class="m-r-xs">BitCoin(BTC)</h5>
+                    </div>
+                    <div class="ibox-content">
+                    	<h2 class="font-bold text-warning">Bithumb</h2>
+                    	<div class="row">
+                    		<div class="col-md-4">
+		                    	<h3 class="font-bold">KRW</h3>
+		                        <h1 class="no-margins" id="btbBtcKRWMain"></h1>
+	                        </div>
+                    		<div class="col-md-4">
+		                    	<h3 class="font-bold">USD by bitfinex</h3>
+		                        <h1 class="no-margins" id="btbBtcUSDMain"></h1>
+	                        </div>
+                    		<div class="col-md-4">
+		                    	<h3 class="font-bold">Korea Premium</h3>
+		                        <h1 class="no-margins" id="btbBtcKp"></h1>
+	                        </div>
+                        </div>
+                        <hr>
+                        <h2 class="font-bold text-success">Upbit</h2>
+                    	<div class="row">
+                    		<div class="col-md-4">
+		                    	<h3 class="font-bold">KRW</h3>
+		                        <h1 class="no-margins" id="ubtBtcKRWMain"></h1>
+	                        </div>
+                    		<div class="col-md-4">
+		                    	<h3 class="font-bold">USD by bitfinex</h3>
+		                        <h1 class="no-margins" id="ubtBtcUSDMain"></h1>
+	                        </div>
+	                        <div class="col-md-4">
+		                    	<h3 class="font-bold">Korea Premium</h3>
+		                        <h1 class="no-margins" id="ubtBtcKp"></h1>
+	                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <span class="label label-success pull-right">Today</span>
+                        <h5 id="selectViewName"><img src="img/eth.png" width="20" height="20" class="m-r-xs">이더리움(ETH)</h5>
+                    </div>
+                    <div class="ibox-content">
+                    	<h2 class="font-bold text-warning">Bithumb</h2>
+                    	<div class="row">
+                    		<div class="col-md-4">
+		                    	<h3 class="font-bold">KRW</h3>
+		                        <h1 class="no-margins" id="btbSelectKRW"></h1>
+	                        </div>
+                    		<div class="col-md-4">
+		                    	<h3 class="font-bold">USD by bitfinex</h3>
+		                        <h1 class="no-margins" id="btbSelectUSD"></h1>
+	                        </div>
+                    		<div class="col-md-4">
+		                    	<h3 class="font-bold">Korea Premium</h3>
+		                        <h1 class="no-margins" id="btbSelectKp"></h1>
+	                        </div>
+                        </div>
+                        <hr>
+                        <h2 class="font-bold text-success">Upbit</h2>
+                    	<div class="row">
+                    		<div class="col-md-4">
+		                    	<h3 class="font-bold">KRW</h3>
+		                        <h1 class="no-margins" id="ubtSelectKRW"></h1>
+	                        </div>
+                    		<div class="col-md-4">
+		                    	<h3 class="font-bold">USD by bitfinex</h3>
+		                        <h1 class="no-margins" id="ubtSelectUSD"></h1>
+	                        </div>
+	                        <div class="col-md-4">
+		                    	<h3 class="font-bold">Korea Premium</h3>
+		                        <h1 class="no-margins" id="ubtSelectKp"></h1>
+	                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>     
+        <div class="wrapper wrapper-content animated fadeInRight">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="text-center">
+                        <small>
+                                                                 제작자 : Catchup <br>
+							blog :  <a href="http://www.leafcats.com">www.leafcats.com</a> / Email : coinskydev@gmail.com <br>
+                                                                 계산 환율 : <label id="curRate"></label>KRW / 1 USD
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        
+
+	<!-- datatables -->
+    <script src="js/plugins/dataTables/datatables.min.js"></script>
+
+    <!-- FooTable -->
+    <script src="js/plugins/footable/footable.all.min.js"></script>
+    
+	<!-- Toaster -->
+    <script src="js/plugins/toastr/toastr.min.js"></script>    
+    
+	<script type="text/javascript">
+	var CUR_RATE = 1068.50;
+	var COIN_TABLE;
+	
+    
+    function calKP(kr, us, target){
+    	if($('#'+ kr).html() != "" && $('#' + us).html() != ""){
+	    	$("#"+ target).html( ( ($('#'+ kr).html() - $('#' + us).html() * CUR_RATE ) / ($('#' + us).html() * CUR_RATE) * 100 ).toFixed(2) + "%");
+    	}
+    }
+    
+		//콤마찍기
+		function numberWithCommas(x) { return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); }
+		/* function numberWithCommas(str) { 
+			str = String(str);
+		    return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+		} */
+		
+		//콤마풀기
+		function uncomma(str) {
+		    str = String(str);
+		    return str.replace(/[^\d]+/g, '');
+		}
+
+	    $("#reloadBtn").click(function(){
+	    	$('#reloadBtn').prop("disabled",true);
+	    	setTimeout(function(){
+	    		$('#reloadBtn').prop("disabled",false);
+	    	}, 3000);
+	    	getCoinPrice();
+	    });
+	    
+		function setValue(){
+			getCurRate();
+		//	getBtb();
+			getUbt();
+			getUsPrice();
+		}
+
+		
+	    function setCoinTable2(){
+	    	COIN_TABLE = $('#coinTable').dataTable({
+				pageLength: 15,
+				responsive: true,
+				bAutoWidth: false,
+				processing: true,
+				ordering: true,
+				searching: true,
+		        dom: '<"html5buttons"B>f',
+		        buttons: [
+	 	            {extend: 'copy'},
+		            {extend: 'csv'},
+		            {extend: 'excel', title: 'ExampleFile'},
+		            {extend: 'pdf', title: 'ExampleFile'},
+		            {extend: 'print',
+		             customize: function (win){
+		                    $(win.document.body).addClass('white-bg');
+		                    $(win.document.body).css('font-size', '10px');
+		                    $(win.document.body).find('table')
+		                            .addClass('compact')
+		                            .css('font-size', 'inherit');
+		            }
+		            } 
+		        ]
+		
+		    });
+	    }
+	    
+	    function setCoinTable(){
+	    	$('#coinTable').footable();
+	    	
+	    }
+	    var isFirst = true; 
+	    function getCoinPrice(){
+		    $.ajax({
+				headers:{
+					'Accept':'application/json'
+				},
+	            type : "GET",
+	            url : "/getCoinPrice",
+	            dataType : "json",
+	            error : function(){
+	                alert('통신실패!!');
+	            },
+	            success : function(data){
+	            	var coinArr = data.data;
+	            	CUR_RATE = data.exchange.exRate;
+	            	var id = '';
+	            	var usId = '';
+	            	var kpId= '';
+	            	var btbId = '';
+	            	var difId = '';
+	            	for(i=0 ; i < coinArr.length ; i++ ){
+	            		if(coinArr[i].marketId == 1){
+	            			id = 'btf';
+	            		}else if(coinArr[i].marketId == 2){
+	            			id = 'btb';
+	            		}else if (coinArr[i].marketId == 3){
+	            			id = 'ubt';
+	            			difId = 'dif' + coinArr[i].coinSymbol;
+	            			btbId = 'btb' + coinArr[i].coinSymbol + coinArr[i].currency;
+	            		}
+	            		kpId = id + coinArr[i].coinSymbol + 'Kp';
+	            		
+	            		id = id + coinArr[i].coinSymbol + coinArr[i].currency;
+	            		$("#"+id).html(Number(coinArr[i].price));  
+	            		
+	            		if(coinArr[i].marketId != 1){
+		            		usId = 'btf' + coinArr[i].coinSymbol + 'USD';
+		            		calKP(id, usId, kpId);
+	            		}
+	            		
+	            		if(coinArr[i].marketId == 3){
+	            			$("#"+difId).html($("#"+btbId).html() -coinArr[i].price);
+	            			$("#"+usId).html($("#"+usId).html());
+	            		}
+	            		
+	            	}
+	            	if(isFirst){
+	            		setCoinTable2();
+	            		isFirst = false;
+	            	}else{
+	            		COIN_TABLE.fnDraw();
+	            	}
+	            	//환율 타이틀
+	            	$("#curRate").html(CUR_RATE);
+	            	
+	            	//상황판 찍어주기
+	            	$("#btbBtcKRWMain").html($("#btbBTCKRW").html());
+	            	$("#btbBtcUSDMain").html(numberWithCommas($("#btfBTCUSD").html()));
+	            	$("#btbBtcKp").html($("#btbBTCKp").html());
+	            	
+	            	$("#ubtBtcKRWMain").html($("#ubtBTCKRW").html());
+	            	$("#ubtBtcUSDMain").html(numberWithCommas($("#btfBTCUSD").html()));
+	            	$("#ubtBtcKp").html($("#ubtBTCKp").html());
+	            	
+	            	//상황판 찍어주기
+	            	$("#btbSelectKRW").html($("#btbETHKRW").html());
+	            	$("#btbSelectUSD").html(numberWithCommas($("#btfETHUSD").html()));
+	            	$("#btbSelectKp").html($("#btbETHKp").html());
+	            	
+	            	$("#ubtSelectKRW").html($("#ubtETHKRW").html());
+	            	$("#ubtSelectUSD").html(numberWithCommas($("#btfETHUSD").html()));
+	            	$("#ubtSelectKp").html($("#ubtETHKp").html());
+	            	
+	            	
+	            }
+	             
+	        });
+	    }
+
+
+		var callNewPrice = setInterval(function() {
+			getCoinPrice();
+		}, 5000);
+		
+		$(document).ready(function(){
+			getCoinPrice();
+		});
+		
+	</script>
+
+</div>
+
+</body>
+</html>

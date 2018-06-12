@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.leafCat.common.user.mapper.LoginMapper">
+    
+     <select id="selectOneUserForLogin" resultType="com.leafCat.common.user.vo.UserVO" 
+        			parameterType="com.leafCat.common.user.vo.LoginVO">
+        SELECT /*selectOneUser*/
+        	   USER_ID,
+		       EMAIL_ADDR,
+		       USER_NAME,
+		       PASSWORD,
+		       USER_TYPE_CD,
+		       CREAT_DT,
+		       LAST_MOD_DT,
+		       USER_STAT_CD,
+		       PASSWORD_ERR_CNT
+		  FROM leafcat.USER_BASE
+		 WHERE EMAIL_ADDR = #{emailAddr}
+		   AND USE_YN = 'Y'
+    </select>
+    
+     <insert id="insertLoginHistory" parameterType="com.leafCat.common.user.vo.LoginVO">
+		INSERT INTO /*insertLoginHistory*/
+					 leafcat.LOGIN_HISTORY
+		(
+		 USER_ID, 
+		 LOGIN_TIMESTAMP, 
+		 LOGIN_IP
+		 ) 
+		VALUES 
+		(
+		#{userId},
+		 CURRENT_TIMESTAMP,
+		#{loginIp}
+		)
+    </insert>
+    
+    
+
+</mapper>
+

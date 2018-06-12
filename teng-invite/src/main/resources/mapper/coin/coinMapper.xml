@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.leafCat.coin.mapper.CoinMapper">
+    <update id="updateCoinPrice" parameterType="com.leafCat.coin.vo.CoinVO">
+	    UPDATE leafcat.COIN_PRICE 
+		SET PRICE = #{price} 
+		   ,LAST_UPDATE_DT = CURRENT_TIMESTAMP
+		WHERE MARKET_ID = #{marketId}
+		  AND COIN_SYMBOL = #{coinSymbol}
+		  AND CURRENCY = #{currency}
+    </update>
+    
+    <update id="updateExchangeRate" parameterType="com.leafCat.coin.vo.ExchangeVO">
+	    UPDATE leafcat.EXCHANGE_RATE
+		SET EX_RATE = #{exRate} 
+		   ,LAST_UPDATE_DT = CURRENT_TIMESTAMP
+		WHERE CUR_SYMBOL = #{curSymbol}
+    </update>
+    
+    <select id="selectOneExchangeRate" parameterType="com.leafCat.coin.vo.ExchangeVO" resultType="com.leafCat.coin.vo.ExchangeVO">
+		SELECT CUR_SYMBOL
+		      ,EX_RATE
+		      ,LAST_UPDATE_DT
+		FROM leafcat.EXCHANGE_RATE
+		WHERE 1=1
+		AND CUR_SYMBOL = #{curSymbol}
+    </select>
+        
+    <select id="selectCoinPriceList" parameterType="com.leafCat.coin.vo.CoinVO" resultType="com.leafCat.coin.vo.CoinVO">
+		SELECT MARKET_ID
+		       ,COIN_SYMBOL
+		       ,PRICE
+		       ,CURRENCY
+		FROM  leafcat.COIN_PRICE
+		WHERE 1=1
+		<if test="coinSymbol != null and !''.equals(coinSymbol)">
+		AND COIN_SYMBOL = #{coinSymbol}
+		</if>
+		<if test="marketId != null and marketId != 0">
+		AND MARKET_ID = #{marketId}
+		</if>
+		ORDER BY MARKET_ID asc
+    </select>    
+</mapper>

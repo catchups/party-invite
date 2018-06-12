@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.leafCat.coin.mapper.CoinGapMapper">
+  
+    
+    <insert id="insertCoinGapData" parameterType="com.leafCat.coin.vo.CoinGapVO">
+		INSERT INTO leafcat.COIN_GAP(
+		   COIN_SYMBOL
+		  ,UPBIT_PRICE
+		  ,BITHUMB_PRICE
+		  ,GAP
+		  ,DURATION
+		  ,FIRST_CREATE_DATETIME
+		  ,GAP_TPYE
+		  ,GAP_PERCENT
+		) VALUES (
+		   #{coinSymbol} -- COIN_SYMBOL - IN varchar(10)
+		  ,#{upbitPrice} -- UPBIT_PRICE - IN double
+		  ,#{bithumbPrice} -- BITHUMB_PRICE - IN double
+		  ,#{gap} -- GAP - IN double
+		  ,#{duration}  -- DURATION - IN int(11)
+		  ,CURRENT_TIMESTAMP -- FIRST_CREATE_DATETIME - IN timestamp
+		  ,#{gapType}   -- GAP_TPYE - IN int(1)
+		  ,#{gapPercent}   -- GAP_PERCENT - IN double
+		)
+    </insert>
+    
+
+</mapper>
+

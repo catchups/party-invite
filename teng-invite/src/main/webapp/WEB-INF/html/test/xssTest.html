@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+</head>
+<body>
+<input th:value="${val}" id="test" hidden="true"/>
+
+
+
+    <script src="js/jquery-3.1.1.min.js"></script>
+<script type="text/javascript">
+
+$(document).ready(function () {
+	document.write($("#test").val());
+});
+
+</script>
+</body>
+</html>
